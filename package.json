@@ -1,0 +1,12 @@
+{
+    "name": "node-plottable",
+    "description": "node module for creating charts with plottable",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git"
+    },
+
+    "dependencies": {
+        "d3": "^3.4.11"
+    }
+}

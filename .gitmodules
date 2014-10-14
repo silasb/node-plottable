@@ -1,0 +1,3 @@
+[submodule "plottable"]
+	path = plottable
+	url = git@github.com:piotrdonicz/plottable.git
