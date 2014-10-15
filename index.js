@@ -10,6 +10,7 @@ if ('document' in global) globals.document = global.document;
 global.document = document;
 
 //fixes for plottable
+if ('navigator' in global) globals.navigator = global.navigator;
 global.navigator = {};
 global.navigator.userAgent = 'WebKit';
 global.chartSettings = {
@@ -54,5 +55,6 @@ if ('window' in globals) global.window = globals.window;
 else delete global.window;
 if ('document' in globals) global.document = globals.document;
 else delete global.document;
-delete global.navigator;
+if ('navigator' in globals) global.navigator = globals.navigator;
+else delete global.navigator;
 delete global.chartSettings;

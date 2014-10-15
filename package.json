@@ -1,11 +1,13 @@
 {
-  "name": "node-plottable",
-  "description": "node module for creating charts with plottable",
-  "version": "0.0.1",
-  "repository": {
-    "type": "git"
-  },
-  "dependencies": {
-    "d3": "^3.4.12"
-  }
+    "name": "node-plottable",
+    "description": "node module for creating charts with plottable",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:BrandwatchLtd/node-plottable.git"
+    },
+    "main": "index.js",
+    "dependencies": {
+        "d3": "^3.4.12"
+    }
 }
