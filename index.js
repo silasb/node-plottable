@@ -13,10 +13,9 @@ global.document = document;
 if ('navigator' in global) globals.navigator = global.navigator;
 global.navigator = {};
 global.navigator.userAgent = 'WebKit';
-global.chartSettings = {
-    CHART_WIDTH: 750,
-    CHART_HEIGHT: 500
-}
+
+var chartWidth= 750;
+var chartHeight = 500;
 
 function getParsedStyleValue(style, prop) {
     var value = style.getPropertyValue(prop);
@@ -34,7 +33,7 @@ Plottable._Util.DOM.getElementWidth = function (elem) {
         + getParsedStyleValue(style, "padding-right")
         + getParsedStyleValue(style, "border-left-width")
         + getParsedStyleValue(style, "border-right-width");
-    return width > 0 ? width : chartSettings.CHART_WIDTH;
+    return width > 0 ? width : chartWidth;
 };
 
 Plottable._Util.DOM.getElementHeight = function (elem) {
@@ -44,12 +43,18 @@ Plottable._Util.DOM.getElementHeight = function (elem) {
         + getParsedStyleValue(style, "padding-bottom")
         + getParsedStyleValue(style, "border-top-width")
         + getParsedStyleValue(style, "border-bottom-width");
-    return height > 0 ? height : chartSettings.CHART_HEIGHT;
+    return height > 0 ? height : chartHeight;
 };
 
+Plottable.setChartDimensions = function(width, height) {
+    chartHeight = height;
+    chartWidth = width;
+};
 // that's it
 
 module.exports = Plottable;
+
+
 
 if ('window' in globals) global.window = globals.window;
 else delete global.window;
@@ -57,4 +62,3 @@ if ('document' in globals) global.document = globals.document;
 else delete global.document;
 if ('navigator' in globals) global.navigator = globals.navigator;
 else delete global.navigator;
-delete global.chartSettings;
