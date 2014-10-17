@@ -6,6 +6,7 @@
         "type": "git",
         "url": "git@github.com:BrandwatchLtd/node-plottable.git"
     },
+    "scripts": { "preinstall" : "git submodule update --init"},
     "main": "index.js",
     "dependencies": {
         "d3": "^3.4.12"
