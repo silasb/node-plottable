@@ -4,6 +4,10 @@ Plottable for Node
 Wrapper for Plottable charts to generate them in Node.
 index.js contain stubs for Plottable functions that had to be overridden to generate charts on the server side.
 
+Installation
+------------
+    $ npm install
+
 Usage
 -----
 

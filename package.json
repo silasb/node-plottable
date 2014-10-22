@@ -1,16 +1,30 @@
 {
-    "name": "node-plottable",
-    "description": "node module for creating charts with plottable",
-    "version": "0.0.1",
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:BrandwatchLtd/node-plottable.git"
-    },
-    "scripts": { "preinstall" : "git submodule update --init"},
-    "main": "index.js",
-    "dependencies": {
-        "d3": "^3.4.12"
-    },
-    "author": "Measurement Team <measurement-team@brandwatch.com>",
-    "license": "NONE"
+  "name": "node-plottable",
+  "description": "node module for creating charts with plottable",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:BrandwatchLtd/node-plottable.git"
+  },
+  "scripts": {
+    "preinstall": "git submodule update --init"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "d3": "^3.4.12",
+    "fs": "0.0.2",
+    "jsdom": "^1.0.3",
+    "juice": "^0.5.0",
+    "underscore": "^1.7.0"
+  },
+  "devDependencies": {
+    "sinon": "^1.9.0",
+    "mocha": "^1.17.1",
+    "jshint": "^2.4.4",
+    "cheerio": "^0.13.1",
+    "jscs": "^1.4.5",
+    "jslint": "^0.5.0"
+  },
+  "author": "Measurement Team <measurement-team@brandwatch.com>",
+  "license": "NONE"
 }
