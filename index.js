@@ -3,7 +3,7 @@ var d3 = require('d3');
 var path = require('path');
 var fs = require('fs');
 var juice = require('juice');
-var window = global.window = d3.select('*')[0][0]._ownerDocument._parentWindow;
+var window = d3.select('*')[0][0]._ownerDocument._parentWindow;
 var document = window.document;
 var navigator = {};
 navigator.userAgent = 'WebKit';
@@ -109,11 +109,4 @@ Plottable.setChartDimensions = function(width, height) {
 };
 
 module.exports = Plottable;
-
-if ('window' in globals) {
-
-    global.window = globals.window;
-} else {
-    delete global.window;
-}
 
