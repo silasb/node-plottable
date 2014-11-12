@@ -12,7 +12,6 @@ define MAKEFILE_USAGE
 Usage instructions:
     make lint                        runs jshint and jscs on the codebase
     make test                        runs the unit tests
-    make test grep=[filter]          filter and run runs the unit test
 endef
 export MAKEFILE_USAGE
 
@@ -29,24 +28,10 @@ if [ "$$changed_js_files" != "" ]; then
   echo "$$changed_js_files" | xargs $$(npm bin)/jshint
 fi
 
-# TODO: Commented out until we start using npm shrinkwrap in this repo
-# Re-generate the shrinkwrap file if package.json has changed.
-# if echo "$$changed_files" | grep package.json > /dev/null; then
-#   npm shrinkwrap && git add npm-shrinkwrap.json
-# fi
 endef
 export GITHOOK
 
 default: help
-
-# Try and provide some useful debug output when installing this module fails
-# due to missing PKG_CONFIG_PATH. This only applies to OSX development though.
-.PHONY: install-check
-install-check:
-	@ if [ "$$PKG_CONFIG_PATH" = "" ] && [ -d /usr/X11/lib/pkgconfig ]; then \
-	    echo "No pkgconfig eviroment variable found, run:\n\n  $$ PKG_CONFIG_PATH=/usr/X11/lib/pkgconfig npm install\n"; \
-	    exit 1; \
-	  fi
 
 .PHONY: test
 test: $(mocha)
