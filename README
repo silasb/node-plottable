@@ -16,11 +16,29 @@ It can be required and used with any other module:
     var Plottable = require('node-plottable');
     var xScale = new Plottable.Scale.Ordinal(); ...
 
+Example
+-------
+example can be run using:
+
+    node example.js
+
+Testing
+-------
+
+Unit tests can be run using make:
+
+    $ make test
+
 
 Dependencies
 ------------
 
  d3
+ jsdom
+ brandwatch/plottable
+ juice
+ underscore
+ mocha
 
 Authors
 -------
