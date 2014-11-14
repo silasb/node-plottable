@@ -8,11 +8,12 @@
   },
   "main": "index.js",
   "dependencies": {
+    "assert": "^1.1.2",
     "d3": "^3.4.12",
     "jsdom": "^1.0.3",
     "juice": "^0.5.0",
-    "underscore": "^1.7.0",
-    "plottable.js": "git+ssh://git@github.com:BrandwatchLtd/plottable.git#develop"
+    "plottable.js": "git+ssh://git@github.com:BrandwatchLtd/plottable.git#develop",
+    "underscore": "^1.7.0"
   },
   "devDependencies": {
     "sinon": "^1.9.0",

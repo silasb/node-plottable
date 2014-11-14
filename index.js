@@ -1,3 +1,5 @@
+var d3 = require('d3');
+var assert = require('assert');
 var path = require('path');
 var fs = require('fs');
 var juice = require('juice');
@@ -8,15 +10,21 @@ navigator.userAgent = 'WebKit';
 
 var Plottable = require('plottable.js')(window, document, navigator);
 
-var chartWidth = 750;
-var chartHeight = 500;
-var tickCount = 10;
+var chartWidth;
+var chartHeight;
+var tickCount;
+
 var PLOTTABLE_CSS_PATH = path.join(__dirname, 'node_modules', 'plottable.js', 'plottable.css');
 var plottableCss = fs.readFileSync(PLOTTABLE_CSS_PATH, {encoding: 'utf8'});
 
+function getBodyContent(html){
+    return html.split('<html><body>')[1].split('</body></html>')[0];
+}
+
 //function will add inline styles to svg chart
-Plottable.inlineStyle = function (svg) {
-    return juice.inlineContent(svg, plottableCss);
+function inlineStyle (svg) {
+    var svgHtml = juice.inlineContent(svg, plottableCss);
+    return getBodyContent(svgHtml);
 }
 
 function getParsedStyleValue(style, prop) {
@@ -73,10 +81,24 @@ Plottable.Axis.AbstractAxis.prototype._hideOverlappingTickLabels = function () {
     }
 };
 
-//setter for width and height for chart
-Plottable.setChartDimensions = function (width, height) {
-    chartHeight = height;
-    chartWidth = width;
+Plottable.Component.AbstractComponent.prototype.renderString = function () {
+    var svg = d3.select('body').append('svg').attr('id', 'contentSVG');
+
+    this.renderTo('svg#contentSVG');
+
+    var svgString = svg[0][0].parentNode.innerHTML;
+    var res = inlineStyle(svgString);
+
+    svg.remove();
+    return res;
 };
 
-module.exports = Plottable;
+module.exports = function factory(config) {
+    ['width', 'height', 'ticks'].forEach(function (property) {
+        assert.equal(typeof config[property], 'number');
+    });
+    chartWidth = config.width;
+    chartHeight = config.height;
+    tickCount = config.ticks;
+    return Plottable;
+};
