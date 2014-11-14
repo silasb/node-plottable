@@ -2,7 +2,6 @@
 
 var jsdom = require('jsdom');
 var document = jsdom.jsdom('<html><head></head><body></body></html>');
-var window = document.parentWindow;
 var chart = require('../example');
 var assert = require('assert');
 var factory = require('../index');
