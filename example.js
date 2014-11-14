@@ -1,8 +1,10 @@
+'use strict';
+
 var chartConfig = {
     width: 750,
     height: 500,
     ticks: 10
-}
+};
 var Plottable = require('./index')(chartConfig);
 
 var getExample = function () {
@@ -64,7 +66,7 @@ var getExample = function () {
         [null, null, xAxis, null, null]
     ]).renderString();
     return result;
-}
+};
 
 exports.getExample = getExample;
 

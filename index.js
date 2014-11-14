@@ -1,3 +1,5 @@
+'use strict';
+
 var d3 = require('d3');
 var assert = require('assert');
 var path = require('path');
@@ -7,7 +9,7 @@ var window = d3.select('*')[0][0]._ownerDocument._parentWindow;
 var document = window.document;
 var navigator = {};
 navigator.userAgent = 'WebKit';
-
+global.d3 = d3;
 var Plottable = require('plottable.js')(window, document, navigator);
 
 var chartWidth;
