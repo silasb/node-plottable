@@ -12,6 +12,8 @@ define MAKEFILE_USAGE
 Usage instructions:
     make lint                        runs jshint and jscs on the codebase
     make test                        runs the unit tests
+    make install                     installs the git hooks
+    make remove-hooks                removes the installed git hooks
 endef
 export MAKEFILE_USAGE
 
@@ -32,6 +34,13 @@ endef
 export GITHOOK
 
 default: help
+
+.PHONY: install
+install: $(pre_commit_hook)
+
+.PHONY: remove-hooks
+remove-hooks:
+	@rm -f $(pre_commit_hook)
 
 .PHONY: test
 test: $(mocha)
