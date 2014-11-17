@@ -5,7 +5,7 @@ var assert = require('assert');
 
 //patch for memory leak
 function patchedOn () {
-    console.log('prevent to register d3.selection.prototype.on');
+    console.log('d3.selection.prototype.on is disabled in node-plottable');
 };
 d3.selection.prototype.on = patchedOn;
 
@@ -29,6 +29,7 @@ var plottableCss = fs.readFileSync(PLOTTABLE_CSS_PATH, {encoding: 'utf8'});
 
 //patch for memory leak to prevent registering window.addEventListener
 Plottable.Component.AbstractComponent.prototype.autoResize = function () {
+    console.log('Plottable.Component.AbstractComponent.prototype.autoResize is disabled in node-plottable');
     Plottable.Core.ResizeBroadcaster.deregister(this);
     return this;
 };
