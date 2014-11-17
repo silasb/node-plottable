@@ -2,6 +2,13 @@
 
 var d3 = require('d3');
 var assert = require('assert');
+
+//patch for memory leak
+function patchedOn () {
+    console.log('d3.selection.prototype.on is disabled in node-plottable');
+};
+d3.selection.prototype.on = patchedOn;
+
 var path = require('path');
 var fs = require('fs');
 var juice = require('juice');
@@ -9,6 +16,7 @@ var window = d3.select('*')[0][0]._ownerDocument._parentWindow;
 var document = window.document;
 var navigator = {};
 navigator.userAgent = 'WebKit';
+//Plottable require global d3 object
 global.d3 = d3;
 var Plottable = require('plottable.js')(window, document, navigator);
 
@@ -18,6 +26,13 @@ var tickCount;
 
 var PLOTTABLE_CSS_PATH = path.join(__dirname, 'node_modules', 'plottable.js', 'plottable.css');
 var plottableCss = fs.readFileSync(PLOTTABLE_CSS_PATH, {encoding: 'utf8'});
+
+//patch for memory leak to prevent registering window.addEventListener
+Plottable.Component.AbstractComponent.prototype.autoResize = function () {
+    console.log('Plottable.Component.AbstractComponent.prototype.autoResize is disabled in node-plottable');
+    Plottable.Core.ResizeBroadcaster.deregister(this);
+    return this;
+};
 
 function getBodyContent(html){
     return html.split('<html><body>')[1].split('</body></html>')[0];
@@ -94,6 +109,7 @@ Plottable.Component.AbstractComponent.prototype.renderString = function () {
     svg.remove();
     return res;
 };
+
 
 module.exports = function factory(config) {
     ['width', 'height', 'ticks'].forEach(function (property) {
